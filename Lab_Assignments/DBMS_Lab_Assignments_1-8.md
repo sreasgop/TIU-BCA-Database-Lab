@@ -266,7 +266,7 @@ sql> CREATE TABLE Employee (EmpID INT PRIMARY KEY, Name VARCHAR(50), Department 
 
 2. Insert Sample Dataz
 
-![[DBMS Lab Assignment 4 Table.png]]
+![Assignment4-Table](https://github.com/sreasgop/TIU-BCA-Database-Lab/blob/main/Lab_Assignments/Screenshots/DBMS_Lab_Assignment-4_Table.png)
 
 ```SQL
 INSERT INTO Employee VALUES (1, 'Alice', 'HR', 50000, 2022), (2, 'Bob', 'IT', 70000, 2021), (3, 'Charlie', 'Finance', 60000, 2020), (4, 'David', 'HR', 55000, 2019), (5, 'Eva', 'IT', 80000, 2022), (6, 'Frank', 'Finance', 62000, 2021), (7, 'Grace', 'HR', 48000, 2018), (8, 'Hank', 'IT', 90000, 2017), (9, 'Ivy', 'Finance', 75000, 2019), (10, 'Jack', 'IT', 85000, 2020);
