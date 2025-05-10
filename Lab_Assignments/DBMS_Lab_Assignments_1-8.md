@@ -1,6 +1,8 @@
 ### 🟩 Assignment 1:- (CREATE, SELECT, INSERT)
 
-![[DBMS Lab Assignment-1 Tables.png]]
+![Assignment1-Tables](https://github.com/sreasgop/TIU-BCA-Database-Lab/Lab_Assignments/Screenshots/DBMS Lab Assignment 4 Table.png)
+
+
 
 1. Create table student with above field:
 ```SQL
