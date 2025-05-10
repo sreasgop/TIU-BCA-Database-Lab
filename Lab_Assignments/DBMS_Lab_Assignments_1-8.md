@@ -1,6 +1,6 @@
 ### 🟩 Assignment 1:- (CREATE, SELECT, INSERT)
 
-![Assignment1-Tables](https://github.com/sreasgop/TIU-BCA-Database-Lab/Lab_Assignments/Screenshots/DBMS_Lab_Assignment-1_Table.png)
+![Assignment1-Tables](https://github.com/sreasgop/TIU-BCA-Database-Lab/blob/main/Lab_Assignments/Screenshots/DBMS_Lab_Assignment-1_Tables.png)
 
 
 
