@@ -1264,3 +1264,156 @@ CROSS JOIN DEPARTMENT d;
 | Eve      | 5           | 2            | HR         |
 | Eve      | 5           | 3            | IT         |
 | Eve      | 5           | 4            | Marketing  |
+
+___
+
+# Assignment - 8 (Nested Queries)
+
+## Table Creation & Data Insertion
+
+### Q1. Write a SQL query to create the DEPARTMENT table with the following columns:
+- Dept_ID (Primary Key)
+- Dept_Name
+- Location
+
+```sql
+CREATE TABLE DEPARTMENT (
+    Dept_ID INT PRIMARY KEY,
+    Dept_Name VARCHAR(50),
+    Location VARCHAR(50)
+);
+```
+
+### Q2. Write a SQL query to create the EMPLOYEE table with the following columns:
+- Emp_ID (Primary Key)
+- Emp_Name
+- Salary
+- Dept_ID (Foreign Key referencing DEPARTMENT(Dept_ID))
+
+```sql
+CREATE TABLE EMPLOYEE (
+    Emp_ID INT PRIMARY KEY,
+    Emp_Name VARCHAR(50),
+    Salary INT,
+    Dept_ID INT,
+    FOREIGN KEY (Dept_ID) REFERENCES DEPARTMENT(Dept_ID)
+);
+```
+
+### Q3. Insert the following records into the DEPARTMENT table:
+```sql
+INSERT INTO DEPARTMENT (Dept_ID, Dept_Name, Location) VALUES
+(1, 'HR', 'New York'),
+(2, 'IT', 'San Jose'),
+(3, 'Marketing', 'Chicago');
+```
+
+### Q4. Insert the following records into the EMPLOYEE table:
+```sql
+INSERT INTO EMPLOYEE (Emp_ID, Emp_Name, Salary, Dept_ID) VALUES
+(101, 'Alice', 70000, 1),
+(102, 'Bob', 90000, 2),
+(103, 'Carol', 85000, 2),
+(104, 'Dave', 60000, 3),
+(105, 'Eve', 95000, 2);
+```
+
+### Q5. Write a SQL query to display all records from the EMPLOYEE table.
+```sql
+SELECT * FROM EMPLOYEE;
+```
+
+**Output:**
+
+| Emp_ID | Emp_Name | Salary | Dept_ID |
+|--------|----------|--------|---------|
+| 101    | Alice    | 70000  | 1       |
+| 102    | Bob      | 90000  | 2       |
+| 103    | Carol    | 85000  | 2       |
+| 104    | Dave     | 60000  | 3       |
+| 105    | Eve      | 95000  | 2       |
+
+### Q6. Write a SQL query to display all records from the DEPARTMENT table.
+```sql
+SELECT * FROM DEPARTMENT;
+```
+
+**Output:**
+
+| Dept_ID | Dept_Name | Location  |
+|---------|-----------|-----------|
+| 1       | HR        | New York  |
+| 2       | IT        | San Jose  |
+| 3       | Marketing | Chicago   |
+
+## Nested Queries
+
+### Q7. Write a SQL query to list the department name where the employee ‘Carol’ works.
+```sql
+SELECT Dept_Name
+FROM DEPARTMENT
+WHERE Dept_ID = (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name = 'Carol');
+```
+
+**Output:**
+
+| Dept_Name |
+|-----------|
+| IT        |
+
+### Q8. Write a SQL query to list employees who work in departments located in ‘New York’ or ‘Chicago’.
+```sql
+SELECT Emp_Name
+FROM EMPLOYEE
+WHERE Dept_ID IN (SELECT Dept_ID FROM DEPARTMENT WHERE Location IN ('New York', 'Chicago'));
+```
+
+**Output:**
+
+| Emp_Name |
+|----------|
+| Alice    |
+| Dave     |
+
+### Q9. Write a SQL query to display employees whose salary is between the salary of ‘Bob’ and ‘Eve’.
+```sql
+SELECT Emp_Name, Salary
+FROM EMPLOYEE
+WHERE Salary BETWEEN 
+    (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Bob') 
+    AND 
+    (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Eve');
+```
+
+**Output:**
+
+| Emp_Name | Salary |
+|----------|--------|
+| Bob      | 90000  |
+| Carol    | 85000  |
+
+### Q10. Write a SQL query to display department names where any employee’s name starts with the letter ‘A’.
+```sql
+SELECT Dept_Name
+FROM DEPARTMENT
+WHERE Dept_ID IN (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name LIKE 'A%');
+```
+
+**Output:**
+
+| Dept_Name |
+|-----------|
+| HR        |
+
+### Q11. Write a SQL query to show employees who have the highest salary.
+```sql
+SELECT Emp_Name, Salary
+FROM EMPLOYEE
+WHERE Salary = (SELECT MAX(Salary) FROM EMPLOYEE);
+```
+
+**Output:**
+
+| Emp_Name | Salary |
+|----------|--------|
+| Eve      | 95000  |
