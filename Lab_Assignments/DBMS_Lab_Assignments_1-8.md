@@ -796,3 +796,288 @@ SELECT * FROM Employees WHERE Name LIKE '__o%';
 | 1     | John Doe    | HR         | 50000  | 2020        |
 | 4     | Bob Johnson | IT         | 80000  | 2018        |
 | 10    | Sophia Red  | IT         | 72000  | 2022        |
+
+___
+
+# Assignment - 6 (ORDER BY, GROUP BY, HAVING Clause)
+
+## Part 1: Create and Insert Statements
+
+### Q1. Write a query to create a table named Sales with columns: SaleID (INT, Primary Key), ProductName (VARCHAR), Category (VARCHAR), Quantity (INT), PricePerUnit (INT), Region (VARCHAR).
+```sql
+CREATE TABLE Sales (
+    SaleID INT PRIMARY KEY,
+    ProductName VARCHAR(50),
+    Category VARCHAR(50),
+    Quantity INT,
+    PricePerUnit INT,
+    Region VARCHAR(50)
+);
+```
+
+### Q2. Write queries to insert at least 8 sample records into the Sales table.
+```sql
+INSERT INTO Sales (SaleID, ProductName, Category, Quantity, PricePerUnit, Region) VALUES
+(1, 'Laptop', 'Electronics', 2, 600, 'North'),
+(2, 'Smartphone', 'Electronics', 4, 300, 'South'),
+(3, 'Desk Chair', 'Furniture', 1, 150, 'West'),
+(4, 'Book', 'Stationery', 10, 20, 'East'),
+(5, 'Monitor', 'Electronics', 3, 200, 'North'),
+(6, 'Notebook', 'Stationery', 5, 10, 'South'),
+(7, 'Sofa', 'Furniture', 1, 800, 'West'),
+(8, 'Pen', 'Stationery', 12, 5, 'East');
+```
+
+## Part 2: ORDER BY Clause
+
+### Q3. List all sales sorted by product name in ascending order.
+```sql
+SELECT * FROM Sales ORDER BY ProductName ASC;
+```
+
+**Output:**
+
+| SaleID | ProductName | Category    | Quantity | PricePerUnit | Region |
+|--------|-------------|-------------|----------|--------------|--------|
+| 4      | Book        | Stationery  | 10       | 20           | East   |
+| 3      | Desk Chair  | Furniture   | 1        | 150          | West   |
+| 1      | Laptop      | Electronics | 2        | 600          | North  |
+| 5      | Monitor     | Electronics | 3        | 200          | North  |
+| 6      | Notebook    | Stationery  | 5        | 10           | South  |
+| 8      | Pen         | Stationery  | 12       | 5            | East   |
+| 2      | Smartphone  | Electronics | 4        | 300          | South  |
+| 7      | Sofa        | Furniture   | 1        | 800          | West   |
+
+### Q4. List all sales sorted by quantity in descending order.
+```sql
+SELECT * FROM Sales ORDER BY Quantity DESC;
+```
+
+**Output:**
+
+| SaleID | ProductName | Category    | Quantity | PricePerUnit | Region |
+|--------|-------------|-------------|----------|--------------|--------|
+| 8      | Pen         | Stationery  | 12       | 5            | East   |
+| 4      | Book        | Stationery  | 10       | 20           | East   |
+| 6      | Notebook    | Stationery  | 5        | 10           | South  |
+| 2      | Smartphone  | Electronics | 4        | 300          | South  |
+| 5      | Monitor     | Electronics | 3        | 200          | North  |
+| 1      | Laptop      | Electronics | 2        | 600          | North  |
+| 3      | Desk Chair  | Furniture   | 1        | 150          | West   |
+| 7      | Sofa        | Furniture   | 1        | 800          | West   |
+
+### Q5. Display sales in the ‘Electronics’ category, sorted by product name (A–Z).
+```sql
+SELECT * FROM Sales WHERE Category = 'Electronics' ORDER BY ProductName ASC;
+```
+
+**Output:**
+
+| SaleID | ProductName | Category    | Quantity | PricePerUnit | Region |
+|--------|-------------|-------------|----------|--------------|--------|
+| 1      | Laptop      | Electronics | 2        | 600          | North  |
+| 5      | Monitor     | Electronics | 3        | 200          | North  |
+| 2      | Smartphone  | Electronics | 4        | 300          | South  |
+
+### Q6. List all sales sorted first by category (A–Z), then by price per unit (lowest to highest).
+```sql
+SELECT * FROM Sales ORDER BY Category ASC, PricePerUnit ASC;
+```
+
+**Output:**
+
+| SaleID | ProductName | Category    | Quantity | PricePerUnit | Region |
+|--------|-------------|-------------|----------|--------------|--------|
+| 2      | Smartphone  | Electronics | 4        | 300          | South  |
+| 5      | Monitor     | Electronics | 3        | 200          | North  |
+| 1      | Laptop      | Electronics | 2        | 600          | North  |
+| 3      | Desk Chair  | Furniture   | 1        | 150          | West   |
+| 7      | Sofa        | Furniture   | 1        | 800          | West   |
+| 8      | Pen         | Stationery  | 12       | 5            | East   |
+| 6      | Notebook    | Stationery  | 5        | 10           | South  |
+| 4      | Book        | Stationery  | 10       | 20           | East   |
+
+### Q7. List the top 3 highest priced sales.
+```sql
+SELECT * FROM Sales ORDER BY PricePerUnit DESC LIMIT 3;
+```
+
+**Output:**
+
+| SaleID | ProductName | Category    | Quantity | PricePerUnit | Region |
+|--------|-------------|-------------|----------|--------------|--------|
+| 7      | Sofa        | Furniture   | 1        | 800          | West   |
+| 1      | Laptop      | Electronics | 2        | 600          | North  |
+| 2      | Smartphone  | Electronics | 4        | 300          | South  |
+
+## Part 3: GROUP BY Clause
+
+### Q8. Calculate the total quantity sold per product.
+```sql
+SELECT ProductName, SUM(Quantity) AS TotalQuantity
+FROM Sales
+GROUP BY ProductName;
+```
+
+**Output:**
+
+| ProductName | TotalQuantity |
+|-------------|---------------|
+| Laptop      | 2             |
+| Smartphone  | 4             |
+| Desk Chair  | 1             |
+| Book        | 10            |
+| Monitor     | 3             |
+| Notebook    | 5             |
+| Sofa        | 1             |
+| Pen         | 12            |
+
+### Q9. Find average quantity sold per region.
+```sql
+SELECT Region, AVG(Quantity) AS AvgQuantity
+FROM Sales
+GROUP BY Region;
+```
+
+**Output:**
+
+| Region | AvgQuantity |
+|--------|-------------|
+| North  | 2.5         |
+| South  | 4.5         |
+| West   | 1.0         |
+| East   | 11.0        |
+
+### Q10. Show the total revenue per category. (Revenue = Quantity × PricePerUnit)
+```sql
+SELECT Category, SUM(Quantity * PricePerUnit) AS TotalRevenue
+FROM Sales
+GROUP BY Category;
+```
+
+**Output:**
+
+| Category    | TotalRevenue |
+|-------------|--------------|
+| Electronics | 3100         |
+| Furniture   | 950          |
+| Stationery  | 400          |
+
+### Q11. Find how many different sales were made per category.
+```sql
+SELECT Category, COUNT(*) AS NumberOfSales
+FROM Sales
+GROUP BY Category;
+```
+
+**Output:**
+
+| Category    | NumberOfSales |
+|-------------|---------------|
+| Electronics | 3             |
+| Furniture   | 2             |
+| Stationery  | 3             |
+
+### Q12. Show total sales (revenue) per product per region.
+```sql
+SELECT ProductName, Region, SUM(Quantity * PricePerUnit) AS TotalRevenue
+FROM Sales
+GROUP BY ProductName, Region;
+```
+
+**Output:**
+
+| ProductName | Region | TotalRevenue |
+|-------------|--------|--------------|
+| Laptop      | North  | 1200         |
+| Smartphone  | South  | 1200         |
+| Desk Chair  | West   | 150          |
+| Book        | East   | 200          |
+| Monitor     | North  | 600          |
+| Notebook    | South  | 50           |
+| Sofa        | West   | 800          |
+| Pen         | East   | 60           |
+
+## Part 4: HAVING Clause
+
+### Q13. List all products where the total quantity sold is greater than 5.
+```sql
+SELECT ProductName, SUM(Quantity) AS TotalQuantity
+FROM Sales
+GROUP BY ProductName
+HAVING SUM(Quantity) > 5;
+```
+
+**Output:**
+
+| ProductName | TotalQuantity |
+|-------------|---------------|
+| Book        | 10            |
+| Pen         | 12            |
+
+### Q14. Show each region where the average quantity sold is more than 3.
+```sql
+SELECT Region, AVG(Quantity) AS AvgQuantity
+FROM Sales
+GROUP BY Region
+HAVING AVG(Quantity) > 3;
+```
+
+**Output:**
+
+| Region | AvgQuantity |
+|--------|-------------|
+| South  | 4.5         |
+| East   | 11.0        |
+
+### Q15. Show products where the maximum quantity sold in a single sale is at least 4.
+```sql
+SELECT ProductName, MAX(Quantity) AS MaxQuantity
+FROM Sales
+GROUP BY ProductName
+HAVING MAX(Quantity) >= 4;
+```
+
+**Output:**
+
+| ProductName | MaxQuantity |
+|-------------|-------------|
+| Smartphone  | 4           |
+| Book        | 10          |
+| Notebook    | 5           |
+| Pen         | 12          |
+
+### Q16. Display categories where the total revenue exceeds $500.
+```sql
+SELECT Category, SUM(Quantity * PricePerUnit) AS TotalRevenue
+FROM Sales
+GROUP BY Category
+HAVING SUM(Quantity * PricePerUnit) > 500;
+```
+
+**Output:**
+
+| Category    | TotalRevenue |
+|-------------|--------------|
+| Electronics | 3100         |
+| Furniture   | 950          |
+
+### Q17. Show products with an average quantity sold per transaction less than 3.
+```sql
+SELECT ProductName, AVG(Quantity) AS AvgQuantity
+FROM Sales
+GROUP BY ProductName
+HAVING AVG(Quantity) < 3;
+```
+
+**Output:**
+
+| ProductName | AvgQuantity |
+|-------------|-------------|
+| Laptop      | 2.0         |
+| Desk Chair  | 1.0         |
+| Monitor     | 3.0         |
+| Sofa        | 1.0         |
+
+___
+
