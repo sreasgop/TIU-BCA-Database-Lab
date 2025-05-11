@@ -497,3 +497,302 @@ WHERE YearOfJoining < 2019;
 |---------------|
 | 90000         |
 ```
+
+___
+
+# Assignment - 5 (Queries using LIKE, IN, and BETWEEN)
+
+## Part 1: Creating Tables and Inserting Data
+
+### Q1. Create a table named Employees with the following structure.
+**Table Structure:**  
+- EmpID (Primary Key)  
+- Name  
+- Department  
+- Salary  
+- JoiningYear  
+
+```sql
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(20),
+    Salary INT,
+    JoiningYear INT
+);
+```
+
+### Q2. Insert at least 10 records into the Employees table.
+```sql
+INSERT INTO Employees (EmpID, Name, Department, Salary, JoiningYear) VALUES
+(1, 'John Doe', 'HR', 50000, 2020),
+(2, 'Jane Smith', 'IT', 75000, 2019),
+(3, 'Alice Brown', 'Finance', 62000, 2021),
+(4, 'Bob Johnson', 'IT', 80000, 2018),
+(5, 'Charlie White', 'HR', 47000, 2020),
+(6, 'Eve Black', 'Finance', 55000, 2020),
+(7, 'David Green', 'IT', 90000, 2017),
+(8, 'Olivia Blue', 'HR', 52000, 2019),
+(9, 'Liam Yellow', 'Finance', 70000, 2021),
+(10, 'Sophia Red', 'IT', 72000, 2022);
+```
+
+### Q3. Show all records of table.
+```sql
+SELECT * FROM Employees;
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 1     | John Doe      | HR         | 50000  | 2020        |
+| 2     | Jane Smith    | IT         | 75000  | 2019        |
+| 3     | Alice Brown   | Finance    | 62000  | 2021        |
+| 4     | Bob Johnson   | IT         | 80000  | 2018        |
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 6     | Eve Black     | Finance    | 55000  | 2020        |
+| 7     | David Green   | IT         | 90000  | 2017        |
+| 8     | Olivia Blue   | HR         | 52000  | 2019        |
+| 9     | Liam Yellow   | Finance    | 70000  | 2021        |
+| 10    | Sophia Red    | IT         | 72000  | 2022        |
+
+## Part 2: Queries using LIKE, IN, and BETWEEN
+
+### Q4. Retrieve employees whose names start with 'J' using LIKE.
+```sql
+SELECT * FROM Employees WHERE Name LIKE 'J%';
+```
+
+**Output:**
+
+| EmpID | Name       | Department | Salary | JoiningYear |
+|-------|------------|------------|--------|-------------|
+| 1     | John Doe   | HR         | 50000  | 2020        |
+| 2     | Jane Smith | IT         | 75000  | 2019        |
+
+### Q5. Retrieve employees whose names end with 'e' using LIKE.
+```sql
+SELECT * FROM Employees WHERE Name LIKE '%e';
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 1     | John Doe      | HR         | 50000  | 2020        |
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 8     | Olivia Blue   | HR         | 52000  | 2019        |
+
+### Q6. Retrieve employees whose names contain 'o' using LIKE.
+```sql
+SELECT * FROM Employees WHERE Name LIKE '%o%';
+```
+
+**Output:**
+
+| EmpID | Name         | Department | Salary | JoiningYear |
+|-------|--------------|------------|--------|-------------|
+| 1     | John Doe     | HR         | 50000  | 2020        |
+| 3     | Alice Brown  | Finance    | 62000  | 2021        |
+| 4     | Bob Johnson  | IT         | 80000  | 2018        |
+| 8     | Olivia Blue  | HR         | 52000  | 2019        |
+| 9     | Liam Yellow  | Finance    | 70000  | 2021        |
+| 10    | Sophia Red   | IT         | 72000  | 2022        |
+
+### Q7. Retrieve employees in the IT or HR department using IN.
+```sql
+SELECT * FROM Employees WHERE Department IN ('IT', 'HR');
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 1     | John Doe      | HR         | 50000  | 2020        |
+| 2     | Jane Smith    | IT         | 75000  | 2019        |
+| 4     | Bob Johnson   | IT         | 80000  | 2018        |
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 7     | David Green   | IT         | 90000  | 2017        |
+| 8     | Olivia Blue   | HR         | 52000  | 2019        |
+| 10    | Sophia Red    | IT         | 72000  | 2022        |
+
+### Q8. Retrieve employees who have a salary of 50000, 70000, or 90000 using IN.
+```sql
+SELECT * FROM Employees WHERE Salary IN (50000, 70000, 90000);
+```
+
+**Output:**
+
+| EmpID | Name        | Department | Salary | JoiningYear |
+|-------|-------------|------------|--------|-------------|
+| 1     | John Doe    | HR         | 50000  | 2020        |
+| 7     | David Green | IT         | 90000  | 2017        |
+| 9     | Liam Yellow | Finance    | 70000  | 2021        |
+
+### Q9. Retrieve employees who joined between 2019 and 2021 using BETWEEN.
+```sql
+SELECT * FROM Employees WHERE JoiningYear BETWEEN 2019 AND 2021;
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 1     | John Doe      | HR         | 50000  | 2020        |
+| 2     | Jane Smith    | IT         | 75000  | 2019        |
+| 3     | Alice Brown   | Finance    | 62000  | 2021        |
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 6     | Eve Black     | Finance    | 55000  | 2020        |
+| 8     | Olivia Blue   | HR         | 52000  | 2019        |
+| 9     | Liam Yellow   | Finance    | 70000  | 2021        |
+
+### Q10. Retrieve employees whose salaries are between 60000 and 80000 using BETWEEN.
+```sql
+SELECT * FROM Employees WHERE Salary BETWEEN 60000 AND 80000;
+```
+
+**Output:**
+
+| EmpID | Name         | Department | Salary | JoiningYear |
+|-------|--------------|------------|--------|-------------|
+| 2     | Jane Smith   | IT         | 75000  | 2019        |
+| 3     | Alice Brown  | Finance    | 62000  | 2021        |
+| 4     | Bob Johnson  | IT         | 80000  | 2018        |
+| 9     | Liam Yellow  | Finance    | 70000  | 2021        |
+| 10    | Sophia Red   | IT         | 72000  | 2022        |
+
+### Q11. Retrieve employees whose joining year is between 2018 and 2020 using BETWEEN.
+```sql
+SELECT * FROM Employees WHERE JoiningYear BETWEEN 2018 AND 2020;
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 1     | John Doe      | HR         | 50000  | 2020        |
+| 2     | Jane Smith    | IT         | 75000  | 2019        |
+| 4     | Bob Johnson   | IT         | 80000  | 2018        |
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 6     | Eve Black     | Finance    | 55000  | 2020        |
+| 8     | Olivia Blue   | HR         | 52000  | 2019        |
+
+### Q12. Retrieve employees whose department names start with 'F' using LIKE.
+```sql
+SELECT * FROM Employees WHERE Department LIKE 'F%';
+```
+
+**Output:**
+
+| EmpID | Name         | Department | Salary | JoiningYear |
+|-------|--------------|------------|--------|-------------|
+| 3     | Alice Brown  | Finance    | 62000  | 2021        |
+| 6     | Eve Black    | Finance    | 55000  | 2020        |
+| 9     | Liam Yellow  | Finance    | 70000  | 2021        |
+
+### Q13. Retrieve employees whose names have 'a' as the second letter using LIKE.
+```sql
+SELECT * FROM Employees WHERE Name LIKE '_a%';
+```
+
+**Output:**
+
+| EmpID | Name        | Department | Salary | JoiningYear |
+|-------|-------------|------------|--------|-------------|
+| 2     | Jane Smith  | IT         | 75000  | 2019        |
+
+### Q14. Retrieve employees whose salaries are not between 50000 and 80000 using NOT BETWEEN.
+```sql
+SELECT * FROM Employees WHERE Salary NOT BETWEEN 50000 AND 80000;
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 7     | David Green   | IT         | 90000  | 2017        |
+
+### Q15. Retrieve employees whose names do not contain 'e' using NOT LIKE.
+```sql
+SELECT * FROM Employees WHERE Name NOT LIKE '%e%';
+```
+
+**Output:**
+
+| EmpID | Name         | Department | Salary | JoiningYear |
+|-------|--------------|------------|--------|-------------|
+| 3     | Alice Brown  | Finance    | 62000  | 2021        |
+| 4     | Bob Johnson  | IT         | 80000  | 2018        |
+| 6     | Eve Black    | Finance    | 55000  | 2020        |
+| 9     | Liam Yellow  | Finance    | 70000  | 2021        |
+| 10    | Sophia Red   | IT         | 72000  | 2022        |
+
+### Q16. Retrieve employees who are not in the IT department using NOT IN.
+```sql
+SELECT * FROM Employees WHERE Department NOT IN ('IT');
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 1     | John Doe      | HR         | 50000  | 2020        |
+| 3     | Alice Brown   | Finance    | 62000  | 2021        |
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 6     | Eve Black     | Finance    | 55000  | 2020        |
+| 8     | Olivia Blue   | HR         | 52000  | 2019        |
+| 9     | Liam Yellow   | Finance    | 70000  | 2021        |
+
+### Q17. Retrieve employees whose joining years are not between 2019 and 2022 using NOT BETWEEN.
+```sql
+SELECT * FROM Employees WHERE JoiningYear NOT BETWEEN 2019 AND 2022;
+```
+
+**Output:**
+
+| EmpID | Name        | Department | Salary | JoiningYear |
+|-------|-------------|------------|--------|-------------|
+| 4     | Bob Johnson | IT         | 80000  | 2018        |
+| 7     | David Green | IT         | 90000  | 2017        |
+
+### Q18. Retrieve employees whose salaries are exactly 47000 or 55000 using IN.
+```sql
+SELECT * FROM Employees WHERE Salary IN (47000, 55000);
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 6     | Eve Black     | Finance    | 55000  | 2020        |
+
+### Q19. Retrieve employees whose names contain 'a' using LIKE.
+```sql
+SELECT * FROM Employees WHERE Name LIKE '%a%';
+```
+
+**Output:**
+
+| EmpID | Name          | Department | Salary | JoiningYear |
+|-------|---------------|------------|--------|-------------|
+| 2     | Jane Smith    | IT         | 75000  | 2019        |
+| 3     | Alice Brown   | Finance    | 62000  | 2021        |
+| 5     | Charlie White | HR         | 47000  | 2020        |
+| 8     | Olivia Blue   | HR         | 52000  | 2019        |
+| 10    | Sophia Red    | IT         | 72000  | 2022        |
+
+### Q20. Retrieve employees whose names have 'o' as the third letter using LIKE.
+```sql
+SELECT * FROM Employees WHERE Name LIKE '__o%';
+```
+
+**Output:**
+
+| EmpID | Name        | Department | Salary | JoiningYear |
+|-------|-------------|------------|--------|-------------|
+| 1     | John Doe    | HR         | 50000  | 2020        |
+| 4     | Bob Johnson | IT         | 80000  | 2018        |
+| 10    | Sophia Red  | IT         | 72000  | 2022        |
