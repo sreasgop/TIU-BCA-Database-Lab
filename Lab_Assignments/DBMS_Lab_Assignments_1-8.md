@@ -95,7 +95,7 @@ sql> ALTER TABLE Employees MODIFY Salary INT NOT NULL;
 
 6. Add a default value to the Salary field in the Employees table. The default salary should be 50000.
 ```SQL
-sql> ALTER TABLE Employees ALTER Salary SET DEFAULT 50000;
+sql> ALTER TABLE Employees MODIFY Salary DEFAULT 50000;
 ```
 
 7. Add a unique constraint to the Department field in the Employees table to ensure that each employee has a unique Department. 
