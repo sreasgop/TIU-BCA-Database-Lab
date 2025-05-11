@@ -253,21 +253,247 @@ sql> DELETE FROM Products WHERE StockQuantity = 0;
 ---
 ### 🟩 Assignment 4:- (Aggregation Function)
 
-1. Create the Employee Table
-	EmplD INT PRIMARY KEY,
-	Name VARCHAR(50),
-	Department VARCHAR(50),
-	salary INT,
-	YearOfJoining INT
+# Assignment - 4 (Aggregate Function)
 
-```SQL
-sql> CREATE TABLE Employee (EmpID INT PRIMARY KEY, Name VARCHAR(50), Department VARCHAR(50), Salary INT, YearOfJoining INT);
+## 1. Create the Employee Table
+- EmpID INT PRIMARY KEY,
+- Name VARCHAR(50),
+- Department VARCHAR(50),
+- Salary INT,
+- YearOfJoining INT
+
+```sql
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT,
+    YearOfJoining INT
+);
 ```
 
-2. Insert Sample Dataz
+## 2. Insert Sample Data
+```sql
+INSERT INTO Employee (EmpID, Name, Department, Salary, YearOfJoining) VALUES
+(1, 'Alice', 'HR', 50000, 2022),
+(2, 'Bob', 'IT', 70000, 2021),
+(3, 'Charlie', 'Finance', 60000, 2020),
+(4, 'David', 'HR', 55000, 2019),
+(5, 'Eva', 'IT', 80000, 2022),
+(6, 'Frank', 'Finance', 62000, 2021),
+(7, 'Grace', 'HR', 48000, 2018),
+(8, 'Hank', 'IT', 90000, 2017),
+(9, 'Ivy', 'Finance', 75000, 2019),
+(10, 'Jack', 'IT', 85000, 2020);
+```
 
-![Assignment4-Table](https://github.com/sreasgop/TIU-BCA-Database-Lab/blob/main/Lab_Assignments/Screenshots/DBMS_Lab_Assignment-4_Table.png)
+## 3. View all the records.
+```sql
+SELECT * FROM Employee;
+```
 
-```SQL
-INSERT INTO Employee VALUES (1, 'Alice', 'HR', 50000, 2022), (2, 'Bob', 'IT', 70000, 2021), (3, 'Charlie', 'Finance', 60000, 2020), (4, 'David', 'HR', 55000, 2019), (5, 'Eva', 'IT', 80000, 2022), (6, 'Frank', 'Finance', 62000, 2021), (7, 'Grace', 'HR', 48000, 2018), (8, 'Hank', 'IT', 90000, 2017), (9, 'Ivy', 'Finance', 75000, 2019), (10, 'Jack', 'IT', 85000, 2020);
+**Output:**
+
+| EmpID | Name    | Department | Salary | YearOfJoining |
+|-------|---------|------------|--------|---------------|
+| 1     | Alice   | HR         | 50000  | 2022          |
+| 2     | Bob     | IT         | 70000  | 2021          |
+| 3     | Charlie | Finance    | 60000  | 2020          |
+| 4     | David   | HR         | 55000  | 2019          |
+| 5     | Eva     | IT         | 80000  | 2022          |
+| 6     | Frank   | Finance    | 62000  | 2021          |
+| 7     | Grace   | HR         | 48000  | 2018          |
+| 8     | Hank    | IT         | 90000  | 2017          |
+| 9     | Ivy     | Finance    | 75000  | 2019          |
+| 10    | Jack    | IT         | 85000  | 2020          |
+
+## 4. Find the total salary of all employees.
+```sql
+SELECT SUM(Salary) AS TotalSalary
+FROM Employee;
+```
+
+**Output:**
+
+| TotalSalary |
+|-------------|
+| 675000      |
+
+## 5. Find the average salary of all employees.
+```sql
+SELECT AVG(Salary) AS AvgSalary
+FROM Employee;
+```
+
+**Output:**
+
+| AvgSalary |
+|-----------|
+| 67500     |
+
+## 6. Count the total number of employees.
+```sql
+SELECT COUNT(*) AS TotalEmployees
+FROM Employee;
+```
+
+**Output:**
+
+| TotalEmployees |
+|----------------|
+| 10             |
+
+## 7. Find the highest salary in the company.
+```sql
+SELECT MAX(Salary) AS HighestSalary
+FROM Employee;
+```
+
+**Output:**
+
+| HighestSalary |
+|---------------|
+| 90000         |
+
+## 8. Find the lowest salary in the company.
+```sql
+SELECT MIN(Salary) AS LowestSalary
+FROM Employee;
+```
+
+**Output:**
+
+| LowestSalary |
+|--------------|
+| 48000        |
+
+## 9. Find the total salary of employees who joined after 2020.
+```sql
+SELECT SUM(Salary) AS TotalSalary
+FROM Employee
+WHERE YearOfJoining > 2020;
+```
+
+**Output:**
+
+| TotalSalary |
+|-------------|
+| 200000      |
+
+## 10. Find the average salary of employees who joined in 2021.
+```sql
+SELECT AVG(Salary) AS AvgSalary
+FROM Employee
+WHERE YearOfJoining = 2021;
+```
+
+**Output:**
+
+| AvgSalary |
+|-----------|
+| 66000     |
+
+## 11. Count the number of employees who joined before 2020.
+```sql
+SELECT COUNT(*) AS EmployeeCount
+FROM Employee
+WHERE YearOfJoining < 2020;
+```
+
+**Output:**
+
+| EmployeeCount |
+|---------------|
+| 4             |
+
+## 12. Find the highest salary of employees earning less than 80,000.
+```sql
+SELECT MAX(Salary) AS HighestSalary
+FROM Employee
+WHERE Salary < 80000;
+```
+
+**Output:**
+
+| HighestSalary |
+|---------------|
+| 75000         |
+
+## 13. Find the total salary of employees earning more than 50,000.
+```sql
+SELECT SUM(Salary) AS TotalSalary
+FROM Employee
+WHERE Salary > 50000;
+```
+
+**Output:**
+
+| TotalSalary |
+|-------------|
+| 575000      |
+
+## 14. Find the number of employees who earn less than 60,000.
+```sql
+SELECT COUNT(*) AS EmployeeCount
+FROM Employee
+WHERE Salary < 60000;
+```
+
+**Output:**
+
+| EmployeeCount |
+|---------------|
+| 3             |
+
+## 15. Find the total salary of employees in the IT department.
+```sql
+SELECT SUM(Salary) AS TotalSalary
+FROM Employee
+WHERE Department = 'IT';
+```
+
+**Output:**
+
+| TotalSalary |
+|-------------|
+| 325000      |
+
+## 16. Find the highest salary in the HR department.
+```sql
+SELECT MAX(Salary) AS HighestSalary
+FROM Employee
+WHERE Department = 'HR';
+```
+
+**Output:**
+
+| HighestSalary |
+|---------------|
+| 55000         |
+
+## 17. Find the lowest salary in the Finance department.
+```sql
+SELECT MIN(Salary) AS LowestSalary
+FROM Employee
+WHERE Department = 'Finance';
+```
+
+**Output:**
+
+| LowestSalary |
+|--------------|
+| 60000        |
+
+## 18. Find the highest salary of employees who joined before 2019.
+```sql
+SELECT MAX(Salary) AS HighestSalary
+FROM Employee
+WHERE YearOfJoining < 2019;
+```
+
+**Output:**
+
+| HighestSalary |
+|---------------|
+| 90000         |
 ```
