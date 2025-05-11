@@ -1081,3 +1081,186 @@ HAVING AVG(Quantity) < 3;
 
 ___
 
+# Assignment - 7 (JOIN Operation)
+
+## Part A: Table Creation and Data Insertion
+
+### 1. Create a table named DEPARTMENT with the following structure:
+- dept_id (Integer, Primary Key)
+- dept_name (Variable-length string, up to 20 characters)
+
+```sql
+CREATE TABLE DEPARTMENT (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(20)
+);
+```
+
+### 2. Create a table named EMPLOYEE with the following structure:
+- emp_id (Integer, Primary Key)
+- emp_name (Variable-length string, up to 20 characters)
+- dept_id (Integer, foreign key referencing DEPARTMENT)
+
+```sql
+CREATE TABLE EMPLOYEE (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(20),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES DEPARTMENT(dept_id)
+);
+```
+
+### 3. Insert the following records into the DEPARTMENT table:
+```sql
+INSERT INTO DEPARTMENT (dept_id, dept_name) VALUES
+(1, 'Sales'),
+(2, 'HR'),
+(3, 'IT'),
+(4, 'Marketing');
+```
+
+### 4. Insert the following records into the EMPLOYEE table:
+```sql
+INSERT INTO EMPLOYEE (emp_id, emp_name, dept_id) VALUES
+(101, 'Alice', 1),
+(102, 'Bob', 2),
+(103, 'Charlie', 3),
+(104, 'David', NULL),
+(105, 'Eve', 5);
+```
+
+### 5. Write a query to view all records from the DEPARTMENT table.
+```sql
+SELECT * FROM DEPARTMENT;
+```
+
+**Output:**
+
+| dept_id | dept_name  |
+|---------|------------|
+| 1       | Sales      |
+| 2       | HR         |
+| 3       | IT         |
+| 4       | Marketing  |
+
+### 6. Write a query to view all records from the EMPLOYEE table.
+```sql
+SELECT * FROM EMPLOYEE;
+```
+
+**Output:**
+
+| emp_id | emp_name | dept_id |
+|--------|----------|---------|
+| 101    | Alice    | 1       |
+| 102    | Bob      | 2       |
+| 103    | Charlie  | 3       |
+| 104    | David    | NULL    |
+| 105    | Eve      | 5       |
+
+## Part B: Join Operations
+
+### 7. Write a query using INNER JOIN to display employee names, department IDs, and department names for employees who belong to an existing department.
+```sql
+SELECT e.emp_name, e.dept_id, d.dept_name
+FROM EMPLOYEE e
+INNER JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
+```
+
+**Output:**
+
+| emp_name | dept_id | dept_name |
+|----------|---------|-----------|
+| Alice    | 1       | Sales     |
+| Bob      | 2       | HR        |
+| Charlie  | 3       | IT        |
+
+### 8. Write a query using LEFT JOIN to display all employee names, their department IDs, and department names. Include employees even if they don’t belong to a valid department.
+```sql
+SELECT e.emp_name, e.dept_id, d.dept_name
+FROM EMPLOYEE e
+LEFT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
+```
+
+**Output:**
+
+| emp_name | dept_id | dept_name |
+|----------|---------|-----------|
+| Alice    | 1       | Sales     |
+| Bob      | 2       | HR        |
+| Charlie  | 3       | IT        |
+| David    | NULL    | NULL      |
+| Eve      | 5       | NULL      |
+
+### 9. Write a query using RIGHT JOIN to display all departments along with employee names (if any) and employee department IDs.
+```sql
+SELECT d.dept_name, e.emp_name, e.dept_id
+FROM EMPLOYEE e
+RIGHT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
+```
+
+**Output:**
+
+| dept_name | emp_name | dept_id |
+|-----------|----------|---------|
+| Sales     | Alice    | 1       |
+| HR        | Bob      | 2       |
+| IT        | Charlie  | 3       |
+| Marketing | NULL     | NULL    |
+
+### 10. Write a query using FULL OUTER JOIN to display all employees and all departments, matching them where possible. Include unmatched rows from both tables.
+*Note: Since some SQL databases (e.g., MySQL) don’t support FULL OUTER JOIN directly, we can simulate it using LEFT JOIN and RIGHT JOIN with UNION.*
+
+```sql
+SELECT e.emp_name, e.dept_id, d.dept_name
+FROM EMPLOYEE e
+LEFT JOIN DEPARTMENT d ON e.dept_id = d.dept_id
+UNION
+SELECT e.emp_name, e.dept_id, d.dept_name
+FROM EMPLOYEE e
+RIGHT JOIN DEPARTMENT d ON e.dept_id = d.dept_id
+WHERE e.emp_id IS NULL;
+```
+
+**Output:**
+
+| emp_name | dept_id | dept_name |
+|----------|---------|-----------|
+| Alice    | 1       | Sales     |
+| Bob      | 2       | HR        |
+| Charlie  | 3       | IT        |
+| David    | NULL    | NULL      |
+| Eve      | 5       | NULL      |
+| NULL     | NULL    | Marketing |
+
+### 11. Write a query using CROSS JOIN to display all possible combinations of employees and departments. Include employee department ID and department ID from both tables.
+```sql
+SELECT e.emp_name, e.dept_id AS emp_dept_id, d.dept_id AS dept_dept_id, d.dept_name
+FROM EMPLOYEE e
+CROSS JOIN DEPARTMENT d;
+```
+
+**Output:**
+
+| emp_name | emp_dept_id | dept_dept_id | dept_name  |
+|----------|-------------|--------------|------------|
+| Alice    | 1           | 1            | Sales      |
+| Alice    | 1           | 2            | HR         |
+| Alice    | 1           | 3            | IT         |
+| Alice    | 1           | 4            | Marketing  |
+| Bob      | 2           | 1            | Sales      |
+| Bob      | 2           | 2            | HR         |
+| Bob      | 2           | 3            | IT         |
+| Bob      | 2           | 4            | Marketing  |
+| Charlie  | 3           | 1            | Sales      |
+| Charlie  | 3           | 2            | HR         |
+| Charlie  | 3           | 3            | IT         |
+| Charlie  | 3           | 4            | Marketing  |
+| David    | NULL        | 1            | Sales      |
+| David    | NULL        | 2            | HR         |
+| David    | NULL        | 3            | IT         |
+| David    | NULL        | 4            | Marketing  |
+| Eve      | 5           | 1            | Sales      |
+| Eve      | 5           | 2            | HR         |
+| Eve      | 5           | 3            | IT         |
+| Eve      | 5           | 4            | Marketing  |
