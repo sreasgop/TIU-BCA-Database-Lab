@@ -146,17 +146,17 @@ sql> CREATE TABLE Products (ProductID INT PRIMARY KEY, ProductName VARCHAR(20) N
 | 5         | Boysenberry Spread | 2          | 25    | 0             |
 
 ```SQL
-sql> INSERT INTO Products VALUES (1, 'Chais', 1, 18, 50);  
-sql> INSERT INTO Products VALUES (2, 'Chang', 1, 19, 30);  
-sql> INSERT INTO Products VALUES (3, 'Aniseed Syrup', 2, 10, 60);  
-sql> INSERT INTO Products VALUES (4, 'Cajun Seasoning', 2, 22, 20);  
-sql> INSERT INTO Products VALUES (5, 'Boysenberry Spread', 2, 25, 0);
+sql> insert into Products values (1, 'Chais', 1, 18, 50);  
+sql> insert into Products values (2, 'Chang', 1, 19, 30);  
+sql> insert into Products values (3, 'Aniseed Syrup', 2, 10, 60);  
+sql> insert into Products values (4, 'Cajun Seasoning', 2, 22, 20);  
+sql> insert into Products values (5, 'Boysenberry Spread', 2, 25, 0);
 ```
 
 
 3. Write a query to view all records.
 ```SQL
-sql> SELECT * FROM Products;
+sql> select * from Products;
 ```
 
 Output:
@@ -173,7 +173,7 @@ Output:
 
 4. Retrieve all products where the price is greater than 20:
 ```SQL
-sql> SELECT * FROM Products WHERE Price > 20;
+sql> select * from Products where Price > 20;
 ```
 
 Output:
@@ -185,7 +185,7 @@ Output:
 
 5. Retrieve all products where CategoryID = 2. 
 ```SQL
-sql> SELECT * FROM Products WHERE CategoryID = 2;
+sql> select * from Products where CategoryID = 2;
 ```
 
 
@@ -199,7 +199,7 @@ Output:
 
 6. Retrieve all products the have StockQuantity less than 40.
 ```SQL
-sql> SELECT * FROM Products WHERE StockQuantity < 40;
+sql>select * from Products where StockQuantity < 40;
 ```
 
 
@@ -215,19 +215,19 @@ Output:
 
 7. Update the price of Chais to 20 where ProductlD = 1.
 ```SQL
-sql> UPDATE Products SET Price = 20 WHERE ProductID = 1;
+sql> update Products set Price = 20 where ProductID = 1;
 ```
 
 
 8. Increase the price of all products in CategoryID = 2 by 10%.D
 ```SQL
-sql> UPDATE Products SET Price = Price * 1.10 WHERE CategoryID = 2;
+sql> update Products set Price = Price * 1.10 where CategoryID = 2;
 ```
 
 
 9. Reduce StockQuantity by 5 for all products where StockQuantity is greater than 40.
 ```SQL
-sql> UPDATE Products SET StockQuantity = StockQuantity - 5 WHERE StockQuantity > 40;
+sql> update Products set StockQuantity = StockQuantity - 5 where StockQuantity > 40;
 ```
 
 
@@ -235,19 +235,19 @@ sql> UPDATE Products SET StockQuantity = StockQuantity - 5 WHERE StockQuantity >
 
 10. Delete the product Chang where ProductlD = 2.
 ```SQL
-sql> DELETE FROM Products WHERE ProductID = 2;
+sql> delete from Products where ProductID = 2;
 ```
 
 
 11. Delete all products where the price is less than 12.
 ```SQL
-sql> DELETE FROM Products WHERE Price < 12;
+sql> delete from Products where Price < 12;
 ```
 
 
 12. Delete all products where StockQuantity is 0.
 ```SQL
-sql> DELETE FROM Products WHERE StockQuantity = 0;
+sql> delete from Products where StockQuantity = 0;
 ```
 
 ---
@@ -263,33 +263,26 @@ sql> DELETE FROM Products WHERE StockQuantity = 0;
 - YearOfJoining INT
 
 ```sql
-CREATE TABLE Employee (
-    EmpID INT PRIMARY KEY,
-    Name VARCHAR(50),
-    Department VARCHAR(50),
-    Salary INT,
-    YearOfJoining INT
-);
+sql> create table Employee (EmpID int primary key, Name varchar (50), Department varchar (50), Salary int, YearOfJoining int);
 ```
 
 ## 2. Insert Sample Data
 ```sql
-INSERT INTO Employee (EmpID, Name, Department, Salary, YearOfJoining) VALUES
-(1, 'Alice', 'HR', 50000, 2022),
-(2, 'Bob', 'IT', 70000, 2021),
-(3, 'Charlie', 'Finance', 60000, 2020),
-(4, 'David', 'HR', 55000, 2019),
-(5, 'Eva', 'IT', 80000, 2022),
-(6, 'Frank', 'Finance', 62000, 2021),
-(7, 'Grace', 'HR', 48000, 2018),
-(8, 'Hank', 'IT', 90000, 2017),
-(9, 'Ivy', 'Finance', 75000, 2019),
-(10, 'Jack', 'IT', 85000, 2020);
+sql> insert into Employee values (1, 'Alice', 'HR', 50000, 2022);
+sql> insert into Employee values (2, 'Bob', 'IT', 70000, 2021);
+sql> insert into Employee values(3, 'Charlie', 'Finance', 60000, 2020);
+sql> insert into Employee values (4, 'David', 'HR', 55000, 2019);
+sql> insert into Employee values (5, 'Eva', 'IT', 80000, 2022);
+sql> insert into Employee values (6, 'Frank', 'Finance', 62000, 2021); 
+sql> insert into Employee values (7, 'Grace', 'HR', 48000, 2018);
+sql> insert into Employee values (8, 'Hank', 'IT', 90000, 2017);
+sql> insert into Employee values (9, 'Ivy', 'Finance', 75000, 2019);
+sql> insert into Employee values (10, 'Jack', 'IT', 85000, 2020);
 ```
 
 ## 3. View all the records.
 ```sql
-SELECT * FROM Employee;
+sql> select * from Employee;
 ```
 
 **Output:**
@@ -309,8 +302,7 @@ SELECT * FROM Employee;
 
 ## 4. Find the total salary of all employees.
 ```sql
-SELECT SUM(Salary) AS TotalSalary
-FROM Employee;
+sql> select sum(Salary) as TotalSalary from Employee;
 ```
 
 **Output:**
@@ -321,8 +313,7 @@ FROM Employee;
 
 ## 5. Find the average salary of all employees.
 ```sql
-SELECT AVG(Salary) AS AvgSalary
-FROM Employee;
+sql> select avg(Salary) as AvgSalary from Employee;
 ```
 
 **Output:**
@@ -332,9 +323,8 @@ FROM Employee;
 | 67500     |
 
 ## 6. Count the total number of employees.
-```sql
-SELECT COUNT(*) AS TotalEmployees
-FROM Employee;
+```sql 
+sql> select count(*) as TotalEmployees from Employee;
 ```
 
 **Output:**
@@ -345,8 +335,7 @@ FROM Employee;
 
 ## 7. Find the highest salary in the company.
 ```sql
-SELECT MAX(Salary) AS HighestSalary
-FROM Employee;
+sql> select max(Salary) as HighestSalary from Employee;
 ```
 
 **Output:**
@@ -357,8 +346,7 @@ FROM Employee;
 
 ## 8. Find the lowest salary in the company.
 ```sql
-SELECT MIN(Salary) AS LowestSalary
-FROM Employee;
+sql> select min(Salary) as LowestSalary from Employee;
 ```
 
 **Output:**
@@ -369,9 +357,7 @@ FROM Employee;
 
 ## 9. Find the total salary of employees who joined after 2020.
 ```sql
-SELECT SUM(Salary) AS TotalSalary
-FROM Employee
-WHERE YearOfJoining > 2020;
+sql> select sum(Salary) as TotalSalary from Employee where YearOfJoining > 2020;
 ```
 
 **Output:**
@@ -382,9 +368,7 @@ WHERE YearOfJoining > 2020;
 
 ## 10. Find the average salary of employees who joined in 2021.
 ```sql
-SELECT AVG(Salary) AS AvgSalary
-FROM Employee
-WHERE YearOfJoining = 2021;
+sql> select AVG(Salary) as AvgSalary from Employee where YearOfJoining = 2021;
 ```
 
 **Output:**
@@ -395,9 +379,7 @@ WHERE YearOfJoining = 2021;
 
 ## 11. Count the number of employees who joined before 2020.
 ```sql
-SELECT COUNT(*) AS EmployeeCount
-FROM Employee
-WHERE YearOfJoining < 2020;
+sql> select count(*) AS EmployeeCount from Employee where YearOfJoining < 2020;
 ```
 
 **Output:**
@@ -408,9 +390,7 @@ WHERE YearOfJoining < 2020;
 
 ## 12. Find the highest salary of employees earning less than 80,000.
 ```sql
-SELECT MAX(Salary) AS HighestSalary
-FROM Employee
-WHERE Salary < 80000;
+sql> select max(Salary) as HighestSalary from Employee where Salary < 80000;
 ```
 
 **Output:**
@@ -421,9 +401,7 @@ WHERE Salary < 80000;
 
 ## 13. Find the total salary of employees earning more than 50,000.
 ```sql
-SELECT SUM(Salary) AS TotalSalary
-FROM Employee
-WHERE Salary > 50000;
+sql> select sum(Salary) as TotalSalary from Employee where Salary > 50000;
 ```
 
 **Output:**
@@ -434,9 +412,7 @@ WHERE Salary > 50000;
 
 ## 14. Find the number of employees who earn less than 60,000.
 ```sql
-SELECT COUNT(*) AS EmployeeCount
-FROM Employee
-WHERE Salary < 60000;
+sql> select count(*) as EmployeeCount from Employee where Salary < 60000;
 ```
 
 **Output:**
@@ -447,9 +423,7 @@ WHERE Salary < 60000;
 
 ## 15. Find the total salary of employees in the IT department.
 ```sql
-SELECT SUM(Salary) AS TotalSalary
-FROM Employee
-WHERE Department = 'IT';
+sql> select sum(Salary) as TotalSalary from Employee where Department = 'IT';
 ```
 
 **Output:**
@@ -460,9 +434,7 @@ WHERE Department = 'IT';
 
 ## 16. Find the highest salary in the HR department.
 ```sql
-SELECT MAX(Salary) AS HighestSalary
-FROM Employee
-WHERE Department = 'HR';
+sql> select max(Salary) as HighestSalary from Employee where Department = 'HR';
 ```
 
 **Output:**
@@ -473,9 +445,7 @@ WHERE Department = 'HR';
 
 ## 17. Find the lowest salary in the Finance department.
 ```sql
-SELECT MIN(Salary) AS LowestSalary
-FROM Employee
-WHERE Department = 'Finance';
+sql> select min(Salary) as LowestSalary from Employee where Department = 'Finance';
 ```
 
 **Output:**
@@ -486,9 +456,7 @@ WHERE Department = 'Finance';
 
 ## 18. Find the highest salary of employees who joined before 2019.
 ```sql
-SELECT MAX(Salary) AS HighestSalary
-FROM Employee
-WHERE YearOfJoining < 2019;
+sql> select max(Salary) as HighestSalary from Employee where YearOfJoining < 2019;
 ```
 
 **Output:**
@@ -1302,20 +1270,18 @@ CREATE TABLE EMPLOYEE (
 
 ### Q3. Insert the following records into the DEPARTMENT table:
 ```sql
-INSERT INTO DEPARTMENT (Dept_ID, Dept_Name, Location) VALUES
-(1, 'HR', 'New York'),
+INSERT INTO DEPARTMENT (Dept_ID, Dept_Name, Location) VALUES (1, 'HR', 'New York'),
 (2, 'IT', 'San Jose'),
 (3, 'Marketing', 'Chicago');
 ```
 
 ### Q4. Insert the following records into the EMPLOYEE table:
 ```sql
-INSERT INTO EMPLOYEE (Emp_ID, Emp_Name, Salary, Dept_ID) VALUES
-(101, 'Alice', 70000, 1),
-(102, 'Bob', 90000, 2),
-(103, 'Carol', 85000, 2),
-(104, 'Dave', 60000, 3),
-(105, 'Eve', 95000, 2);
+INSERT INTO EMPLOYEE VALUES (101, 'Alice', 70000, 1);
+INSERT INTO EMPLOYEE VALUES (102, 'Bob', 90000, 2);
+INSERT INTO EMPLOYEE VALUES (103, 'Carol', 85000, 2);
+INSERT INTO EMPLOYEE VALUES (104, 'Dave', 60000, 3);
+INSERT INTO EMPLOYEE VALUES (105, 'Eve', 95000, 2);
 ```
 
 ### Q5. Write a SQL query to display all records from the EMPLOYEE table.
