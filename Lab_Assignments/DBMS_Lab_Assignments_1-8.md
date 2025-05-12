@@ -480,13 +480,7 @@ ___
 - JoiningYear  
 
 ```sql
-CREATE TABLE Employees (
-    EmpID INT PRIMARY KEY,
-    Name VARCHAR(50),
-    Department VARCHAR(20),
-    Salary INT,
-    JoiningYear INT
-);
+sql> create table Employees (EmpID int primary key, Name varchar(50), Department varchar(20), Salary int, JoiningYear int);
 ```
 
 ### Q2. Insert at least 10 records into the Employees table.
