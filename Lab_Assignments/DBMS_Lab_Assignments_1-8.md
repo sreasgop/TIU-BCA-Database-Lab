@@ -1017,7 +1017,6 @@ sql> select ProductName, avg(Quantity) as AvgQuantity from Sales group by Produc
 |-------------|-------------|
 | Laptop      | 2.0         |
 | Desk Chair  | 1.0         |
-| Monitor     | 3.0         |
 | Sofa        | 1.0         |
 
 ___
