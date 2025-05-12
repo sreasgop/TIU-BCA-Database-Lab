@@ -765,11 +765,9 @@ sql> select * from Employees where Name like '__o%';
 
 **Output:**
 
-| EmpID | Name        | Department | Salary | JoiningYear |
-|-------|-------------|------------|--------|-------------|
-| 1     | John Doe    | HR         | 50000  | 2020        |
-| 4     | Bob Johnson | IT         | 80000  | 2018        |
-| 10    | Sophia Red  | IT         | 72000  | 2022        |
+```SQL
+-- no rows selected
+```
 
 ___
 
