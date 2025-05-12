@@ -1198,7 +1198,9 @@ sql> CREATE TABLE EMPLOYEE ( Emp_ID INT PRIMARY KEY, Emp_Name VARCHAR(50), Salar
 
 ### Q3. Insert the following records into the DEPARTMENT table:
 ```sql
-sql> INSERT INTO DEPARTMENT (Dept_ID, Dept_Name, Location) VALUES (1, 'HR', 'New York'), (2, 'IT', 'San Jose'), (3, 'Marketing', 'Chicago');
+sql> INSERT INTO DEPARTMENT VALUES (1, 'HR', 'New York');
+sql> INSERT INTO DEPARTMENT VALUES (2, 'IT', 'San Jose');
+sql> INSERT INTO DEPARTMENT VALUES  (3, 'Marketing', 'Chicago');
 ```
 
 ### Q4. Insert the following records into the EMPLOYEE table:
@@ -1265,7 +1267,7 @@ sql> SELECT Emp_Name FROM EMPLOYEE WHERE Dept_ID IN (SELECT Dept_ID FROM DEPARTM
 
 ### Q9. Write a SQL query to display employees whose salary is between the salary of ‘Bob’ and ‘Eve’.
 ```sql
-sql> SELECT Emp_Name, Salary FROM EMPLOYEE WHERE Salary BETWEEN (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Bob') AND (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Eve');
+sql> select emp_name, salary from employee where salary between (select salary from employee where emp_name = 'Bob') and (select salary from employee where emp_name = 'Eve');
 ```
 
 **Output:**
@@ -1273,7 +1275,7 @@ sql> SELECT Emp_Name, Salary FROM EMPLOYEE WHERE Salary BETWEEN (SELECT Salary F
 | Emp_Name | Salary |
 |----------|--------|
 | Bob      | 90000  |
-| Carol    | 85000  |
+| Eve      | 95000  |
 
 ### Q10. Write a SQL query to display department names where any employee’s name starts with the letter ‘A’.
 ```sql
