@@ -1183,11 +1183,7 @@ ___
 - Location
 
 ```sql
-CREATE TABLE DEPARTMENT (
-    Dept_ID INT PRIMARY KEY,
-    Dept_Name VARCHAR(50),
-    Location VARCHAR(50)
-);
+sql> CREATE TABLE DEPARTMENT ( Dept_ID INT PRIMARY KEY, Dept_Name VARCHAR(50), Location VARCHAR(50));
 ```
 
 ### Q2. Write a SQL query to create the EMPLOYEE table with the following columns:
@@ -1197,34 +1193,26 @@ CREATE TABLE DEPARTMENT (
 - Dept_ID (Foreign Key referencing DEPARTMENT(Dept_ID))
 
 ```sql
-CREATE TABLE EMPLOYEE (
-    Emp_ID INT PRIMARY KEY,
-    Emp_Name VARCHAR(50),
-    Salary INT,
-    Dept_ID INT,
-    FOREIGN KEY (Dept_ID) REFERENCES DEPARTMENT(Dept_ID)
-);
+sql> CREATE TABLE EMPLOYEE ( Emp_ID INT PRIMARY KEY, Emp_Name VARCHAR(50), Salary INT, Dept_ID INT, FOREIGN KEY (Dept_ID) REFERENCES DEPARTMENT(Dept_ID));
 ```
 
 ### Q3. Insert the following records into the DEPARTMENT table:
 ```sql
-INSERT INTO DEPARTMENT (Dept_ID, Dept_Name, Location) VALUES (1, 'HR', 'New York'),
-(2, 'IT', 'San Jose'),
-(3, 'Marketing', 'Chicago');
+sql> INSERT INTO DEPARTMENT (Dept_ID, Dept_Name, Location) VALUES (1, 'HR', 'New York'), (2, 'IT', 'San Jose'), (3, 'Marketing', 'Chicago');
 ```
 
 ### Q4. Insert the following records into the EMPLOYEE table:
 ```sql
-INSERT INTO EMPLOYEE VALUES (101, 'Alice', 70000, 1);
-INSERT INTO EMPLOYEE VALUES (102, 'Bob', 90000, 2);
-INSERT INTO EMPLOYEE VALUES (103, 'Carol', 85000, 2);
-INSERT INTO EMPLOYEE VALUES (104, 'Dave', 60000, 3);
-INSERT INTO EMPLOYEE VALUES (105, 'Eve', 95000, 2);
+sql> INSERT INTO EMPLOYEE VALUES (101, 'Alice', 70000, 1);
+sql> INSERT INTO EMPLOYEE VALUES (102, 'Bob', 90000, 2);
+sql> INSERT INTO EMPLOYEE VALUES (103, 'Carol', 85000, 2);
+sql> INSERT INTO EMPLOYEE VALUES (104, 'Dave', 60000, 3);
+sql> INSERT INTO EMPLOYEE VALUES (105, 'Eve', 95000, 2);
 ```
 
 ### Q5. Write a SQL query to display all records from the EMPLOYEE table.
 ```sql
-SELECT * FROM EMPLOYEE;
+sql> SELECT * FROM EMPLOYEE;
 ```
 
 **Output:**
@@ -1239,7 +1227,7 @@ SELECT * FROM EMPLOYEE;
 
 ### Q6. Write a SQL query to display all records from the DEPARTMENT table.
 ```sql
-SELECT * FROM DEPARTMENT;
+sql> SELECT * FROM DEPARTMENT;
 ```
 
 **Output:**
@@ -1254,9 +1242,7 @@ SELECT * FROM DEPARTMENT;
 
 ### Q7. Write a SQL query to list the department name where the employee ‘Carol’ works.
 ```sql
-SELECT Dept_Name
-FROM DEPARTMENT
-WHERE Dept_ID = (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name = 'Carol');
+sql> SELECT Dept_Name FROM DEPARTMENT WHERE Dept_ID = (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name = 'Carol');
 ```
 
 **Output:**
@@ -1267,9 +1253,7 @@ WHERE Dept_ID = (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name = 'Carol');
 
 ### Q8. Write a SQL query to list employees who work in departments located in ‘New York’ or ‘Chicago’.
 ```sql
-SELECT Emp_Name
-FROM EMPLOYEE
-WHERE Dept_ID IN (SELECT Dept_ID FROM DEPARTMENT WHERE Location IN ('New York', 'Chicago'));
+sql> SELECT Emp_Name FROM EMPLOYEE WHERE Dept_ID IN (SELECT Dept_ID FROM DEPARTMENT WHERE Location IN ('New York', 'Chicago'));
 ```
 
 **Output:**
@@ -1281,12 +1265,7 @@ WHERE Dept_ID IN (SELECT Dept_ID FROM DEPARTMENT WHERE Location IN ('New York', 
 
 ### Q9. Write a SQL query to display employees whose salary is between the salary of ‘Bob’ and ‘Eve’.
 ```sql
-SELECT Emp_Name, Salary
-FROM EMPLOYEE
-WHERE Salary BETWEEN 
-    (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Bob') 
-    AND 
-    (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Eve');
+sql> SELECT Emp_Name, Salary FROM EMPLOYEE WHERE Salary BETWEEN (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Bob') AND (SELECT Salary FROM EMPLOYEE WHERE Emp_Name = 'Eve');
 ```
 
 **Output:**
@@ -1298,9 +1277,7 @@ WHERE Salary BETWEEN
 
 ### Q10. Write a SQL query to display department names where any employee’s name starts with the letter ‘A’.
 ```sql
-SELECT Dept_Name
-FROM DEPARTMENT
-WHERE Dept_ID IN (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name LIKE 'A%');
+sql> SELECT Dept_Name FROM DEPARTMENT WHERE Dept_ID IN (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name LIKE 'A%');
 ```
 
 **Output:**
@@ -1311,9 +1288,7 @@ WHERE Dept_ID IN (SELECT Dept_ID FROM EMPLOYEE WHERE Emp_Name LIKE 'A%');
 
 ### Q11. Write a SQL query to show employees who have the highest salary.
 ```sql
-SELECT Emp_Name, Salary
-FROM EMPLOYEE
-WHERE Salary = (SELECT MAX(Salary) FROM EMPLOYEE);
+sql> SELECT Emp_Name, Salary FROM EMPLOYEE WHERE Salary = (SELECT MAX(Salary) FROM EMPLOYEE);
 ```
 
 **Output:**
