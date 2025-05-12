@@ -1042,12 +1042,19 @@ sql> CREATE TABLE EMPLOYEE ( emp_id INT PRIMARY KEY, emp_name VARCHAR(20), dept_
 
 ### 3. Insert the following records into the DEPARTMENT table:
 ```sql
-sql> INSERT INTO DEPARTMENT (dept_id, dept_name) VALUES (1, 'Sales'), (2, 'HR'), (3, 'IT'), (4, 'Marketing');
+sql> INSERT INTO DEPARTMENT VALUES (1, 'Sales'); 
+sql> INSERT INTO DEPARTMENT VALUES (2, 'HR');
+sql> INSERT INTO DEPARTMENT VALUES (3, 'IT');
+sql> INSERT INTO DEPARTMENT VALUES (4, 'Marketing');
 ```
 
 ### 4. Insert the following records into the EMPLOYEE table:
 ```sql
-sql> INSERT INTO EMPLOYEE (emp_id, emp_name, dept_id) VALUES (101, 'Alice', 1), (102, 'Bob', 2), (103, 'Charlie', 3), (104, 'David', NULL), (105, 'Eve', 5);
+sql> INSERT INTO EMPLOYEE VALUES (101, 'Alice', 1); 
+sql> INSERT INTO EMPLOYEE VALUES (102, 'Bob', 2); 
+sql> INSERT INTO EMPLOYEE VALUES (103, 'Charlie', 3); 
+sql> INSERT INTO EMPLOYEE VALUES (104, 'David', NULL); 
+sql> INSERT INTO EMPLOYEE VALUES (105, 'Eve', 5);
 ```
 
 ### 5. Write a query to view all records from the DEPARTMENT table.
