@@ -779,34 +779,26 @@ ___
 
 ### Q1. Write a query to create a table named Sales with columns: SaleID (INT, Primary Key), ProductName (VARCHAR), Category (VARCHAR), Quantity (INT), PricePerUnit (INT), Region (VARCHAR).
 ```sql
-CREATE TABLE Sales (
-    SaleID INT PRIMARY KEY,
-    ProductName VARCHAR(50),
-    Category VARCHAR(50),
-    Quantity INT,
-    PricePerUnit INT,
-    Region VARCHAR(50)
-);
+sql> create table Sales (SaleID int primary key, ProductName varchar(50), Category varchar(50), Quantity int, PricePerUnit int, Region varchar(50));
 ```
 
 ### Q2. Write queries to insert at least 8 sample records into the Sales table.
 ```sql
-INSERT INTO Sales (SaleID, ProductName, Category, Quantity, PricePerUnit, Region) VALUES
-(1, 'Laptop', 'Electronics', 2, 600, 'North'),
-(2, 'Smartphone', 'Electronics', 4, 300, 'South'),
-(3, 'Desk Chair', 'Furniture', 1, 150, 'West'),
-(4, 'Book', 'Stationery', 10, 20, 'East'),
-(5, 'Monitor', 'Electronics', 3, 200, 'North'),
-(6, 'Notebook', 'Stationery', 5, 10, 'South'),
-(7, 'Sofa', 'Furniture', 1, 800, 'West'),
-(8, 'Pen', 'Stationery', 12, 5, 'East');
+sql> insert into Sales values (1, 'Laptop', 'Electronics', 2, 600, 'North');
+sql> insert into Sales values (2, 'Smartphone', 'Electronics', 4, 300, 'South');
+sql> insert into Sales values (3, 'Desk Chair', 'Furniture', 1, 150, 'West');
+sql> insert into Sales values (4, 'Book', 'Stationery', 10, 20, 'East');
+sql> insert into Sales values (5, 'Monitor', 'Electronics', 3, 200, 'North');
+sql> insert into Sales values (6, 'Notebook', 'Stationery', 5, 10, 'South');
+sql> insert into Sales values (7, 'Sofa', 'Furniture', 1, 800, 'West');
+sql> insert into Sales values (8, 'Pen', 'Stationery', 12, 5, 'East');
 ```
 
 ## Part 2: ORDER BY Clause
 
 ### Q3. List all sales sorted by product name in ascending order.
 ```sql
-SELECT * FROM Sales ORDER BY ProductName ASC;
+sql> select * from Sales order by ProductName asc;
 ```
 
 **Output:**
@@ -824,7 +816,7 @@ SELECT * FROM Sales ORDER BY ProductName ASC;
 
 ### Q4. List all sales sorted by quantity in descending order.
 ```sql
-SELECT * FROM Sales ORDER BY Quantity DESC;
+sql> select * from Sales order by Quantity desc;
 ```
 
 **Output:**
@@ -842,7 +834,7 @@ SELECT * FROM Sales ORDER BY Quantity DESC;
 
 ### Q5. Display sales in the ‘Electronics’ category, sorted by product name (A–Z).
 ```sql
-SELECT * FROM Sales WHERE Category = 'Electronics' ORDER BY ProductName ASC;
+sql> select * from Sales where Category = 'Electronics' order by ProductName asc;
 ```
 
 **Output:**
@@ -855,7 +847,7 @@ SELECT * FROM Sales WHERE Category = 'Electronics' ORDER BY ProductName ASC;
 
 ### Q6. List all sales sorted first by category (A–Z), then by price per unit (lowest to highest).
 ```sql
-SELECT * FROM Sales ORDER BY Category ASC, PricePerUnit ASC;
+sql> select * from Sales ORDER order by Category asc, PricePerUnit asc;
 ```
 
 **Output:**
@@ -873,7 +865,7 @@ SELECT * FROM Sales ORDER BY Category ASC, PricePerUnit ASC;
 
 ### Q7. List the top 3 highest priced sales.
 ```sql
-SELECT * FROM Sales ORDER BY PricePerUnit DESC LIMIT 3;
+sql> select * from Sales order by PricePerUnit desc limit 3;
 ```
 
 **Output:**
@@ -888,9 +880,7 @@ SELECT * FROM Sales ORDER BY PricePerUnit DESC LIMIT 3;
 
 ### Q8. Calculate the total quantity sold per product.
 ```sql
-SELECT ProductName, SUM(Quantity) AS TotalQuantity
-FROM Sales
-GROUP BY ProductName;
+sql> select ProductName, sum(Quantity) as TotalQuantity from Sales group by ProductName;
 ```
 
 **Output:**
@@ -908,9 +898,7 @@ GROUP BY ProductName;
 
 ### Q9. Find average quantity sold per region.
 ```sql
-SELECT Region, AVG(Quantity) AS AvgQuantity
-FROM Sales
-GROUP BY Region;
+sql> select Region, avg(Quantity) as AvgQuantity from Sales group by Region;
 ```
 
 **Output:**
@@ -924,9 +912,7 @@ GROUP BY Region;
 
 ### Q10. Show the total revenue per category. (Revenue = Quantity × PricePerUnit)
 ```sql
-SELECT Category, SUM(Quantity * PricePerUnit) AS TotalRevenue
-FROM Sales
-GROUP BY Category;
+sql> select Category, sum(Quantity * PricePerUnit) as TotalRevenue from Sales group by Category;
 ```
 
 **Output:**
@@ -939,9 +925,7 @@ GROUP BY Category;
 
 ### Q11. Find how many different sales were made per category.
 ```sql
-SELECT Category, COUNT(*) AS NumberOfSales
-FROM Sales
-GROUP BY Category;
+sql> select Category, count(*) as NumberOfSales from Sales group by Category;
 ```
 
 **Output:**
@@ -954,9 +938,7 @@ GROUP BY Category;
 
 ### Q12. Show total sales (revenue) per product per region.
 ```sql
-SELECT ProductName, Region, SUM(Quantity * PricePerUnit) AS TotalRevenue
-FROM Sales
-GROUP BY ProductName, Region;
+sql> select ProductName, Region, sum(Quantity * PricePerUnit) as TotalRevenue from Sales group by ProductName, Region;
 ```
 
 **Output:**
@@ -976,10 +958,7 @@ GROUP BY ProductName, Region;
 
 ### Q13. List all products where the total quantity sold is greater than 5.
 ```sql
-SELECT ProductName, SUM(Quantity) AS TotalQuantity
-FROM Sales
-GROUP BY ProductName
-HAVING SUM(Quantity) > 5;
+sql> select ProductName, sum(Quantity) as TotalQuantity from Sales group by ProductName having SUM(Quantity) > 5;
 ```
 
 **Output:**
@@ -991,10 +970,7 @@ HAVING SUM(Quantity) > 5;
 
 ### Q14. Show each region where the average quantity sold is more than 3.
 ```sql
-SELECT Region, AVG(Quantity) AS AvgQuantity
-FROM Sales
-GROUP BY Region
-HAVING AVG(Quantity) > 3;
+sql> select Region, avg(Quantity) as AvgQuantity from Sales group by Region having AVG(Quantity) > 3;
 ```
 
 **Output:**
@@ -1006,10 +982,7 @@ HAVING AVG(Quantity) > 3;
 
 ### Q15. Show products where the maximum quantity sold in a single sale is at least 4.
 ```sql
-SELECT ProductName, MAX(Quantity) AS MaxQuantity
-FROM Sales
-GROUP BY ProductName
-HAVING MAX(Quantity) >= 4;
+sql> select ProductName, max(Quantity) as MaxQuantity from Sales group by ProductName having MAX(Quantity) >= 4;
 ```
 
 **Output:**
@@ -1023,10 +996,7 @@ HAVING MAX(Quantity) >= 4;
 
 ### Q16. Display categories where the total revenue exceeds $500.
 ```sql
-SELECT Category, SUM(Quantity * PricePerUnit) AS TotalRevenue
-FROM Sales
-GROUP BY Category
-HAVING SUM(Quantity * PricePerUnit) > 500;
+sql> select Category, sum(Quantity * PricePerUnit) as TotalRevenue from Sales group by Category having sum(Quantity * PricePerUnit) > 500;
 ```
 
 **Output:**
@@ -1038,10 +1008,7 @@ HAVING SUM(Quantity * PricePerUnit) > 500;
 
 ### Q17. Show products with an average quantity sold per transaction less than 3.
 ```sql
-SELECT ProductName, AVG(Quantity) AS AvgQuantity
-FROM Sales
-GROUP BY ProductName
-HAVING AVG(Quantity) < 3;
+sql> select ProductName, avg(Quantity) as AvgQuantity from Sales group by ProductName having avg(Quantity) < 3;
 ```
 
 **Output:**
