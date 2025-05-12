@@ -464,7 +464,6 @@ sql> select max(Salary) as HighestSalary from Employee where YearOfJoining < 201
 | HighestSalary |
 |---------------|
 | 90000         |
-```
 
 ___
 
