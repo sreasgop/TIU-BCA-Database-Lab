@@ -1054,7 +1054,6 @@ sql> INSERT INTO EMPLOYEE VALUES (101, 'Alice', 1);
 sql> INSERT INTO EMPLOYEE VALUES (102, 'Bob', 2); 
 sql> INSERT INTO EMPLOYEE VALUES (103, 'Charlie', 3); 
 sql> INSERT INTO EMPLOYEE VALUES (104, 'David', NULL); 
-sql> INSERT INTO EMPLOYEE VALUES (105, 'Eve', 5);
 ```
 
 ### 5. Write a query to view all records from the DEPARTMENT table.
@@ -1084,7 +1083,6 @@ sql> SELECT * FROM EMPLOYEE;
 | 102    | Bob      | 2       |
 | 103    | Charlie  | 3       |
 | 104    | David    | NULL    |
-| 105    | Eve      | 5       |
 
 ## Part B: Join Operations
 
@@ -1114,7 +1112,6 @@ sql> SELECT e.emp_name, e.dept_id, d.dept_name FROM EMPLOYEE e LEFT JOIN DEPARTM
 | Bob      | 2       | HR        |
 | Charlie  | 3       | IT        |
 | David    | NULL    | NULL      |
-| Eve      | 5       | NULL      |
 
 ### 9. Write a query using RIGHT JOIN to display all departments along with employee names (if any) and employee department IDs.
 ```sql
@@ -1145,7 +1142,6 @@ sql> SELECT e.emp_name, e.dept_id, d.dept_name FROM EMPLOYEE e LEFT JOIN DEPARTM
 | Bob      | 2       | HR        |
 | Charlie  | 3       | IT        |
 | David    | NULL    | NULL      |
-| Eve      | 5       | NULL      |
 | NULL     | NULL    | Marketing |
 
 ### 11. Write a query using CROSS JOIN to display all possible combinations of employees and departments. Include employee department ID and department ID from both tables.
@@ -1173,10 +1169,7 @@ sql> SELECT e.emp_name, e.dept_id AS emp_dept_id, d.dept_id AS dept_dept_id, d.d
 | David    | NULL        | 2            | HR         |
 | David    | NULL        | 3            | IT         |
 | David    | NULL        | 4            | Marketing  |
-| Eve      | 5           | 1            | Sales      |
-| Eve      | 5           | 2            | HR         |
-| Eve      | 5           | 3            | IT         |
-| Eve      | 5           | 4            | Marketing  |
+
 
 ___
 
