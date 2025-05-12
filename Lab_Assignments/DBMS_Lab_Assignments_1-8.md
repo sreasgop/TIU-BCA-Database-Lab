@@ -1028,10 +1028,7 @@ ___
 - dept_name (Variable-length string, up to 20 characters)
 
 ```sql
-CREATE TABLE DEPARTMENT (
-    dept_id INT PRIMARY KEY,
-    dept_name VARCHAR(20)
-);
+sql> CREATE TABLE DEPARTMENT (dept_id INT PRIMARY KEY, dept_name VARCHAR(20));
 ```
 
 ### 2. Create a table named EMPLOYEE with the following structure:
@@ -1040,36 +1037,22 @@ CREATE TABLE DEPARTMENT (
 - dept_id (Integer, foreign key referencing DEPARTMENT)
 
 ```sql
-CREATE TABLE EMPLOYEE (
-    emp_id INT PRIMARY KEY,
-    emp_name VARCHAR(20),
-    dept_id INT,
-    FOREIGN KEY (dept_id) REFERENCES DEPARTMENT(dept_id)
-);
+sql> CREATE TABLE EMPLOYEE ( emp_id INT PRIMARY KEY, emp_name VARCHAR(20), dept_id INT, FOREIGN KEY (dept_id) REFERENCES DEPARTMENT(dept_id));
 ```
 
 ### 3. Insert the following records into the DEPARTMENT table:
 ```sql
-INSERT INTO DEPARTMENT (dept_id, dept_name) VALUES
-(1, 'Sales'),
-(2, 'HR'),
-(3, 'IT'),
-(4, 'Marketing');
+sql> INSERT INTO DEPARTMENT (dept_id, dept_name) VALUES (1, 'Sales'), (2, 'HR'), (3, 'IT'), (4, 'Marketing');
 ```
 
 ### 4. Insert the following records into the EMPLOYEE table:
 ```sql
-INSERT INTO EMPLOYEE (emp_id, emp_name, dept_id) VALUES
-(101, 'Alice', 1),
-(102, 'Bob', 2),
-(103, 'Charlie', 3),
-(104, 'David', NULL),
-(105, 'Eve', 5);
+sql> INSERT INTO EMPLOYEE (emp_id, emp_name, dept_id) VALUES (101, 'Alice', 1), (102, 'Bob', 2), (103, 'Charlie', 3), (104, 'David', NULL), (105, 'Eve', 5);
 ```
 
 ### 5. Write a query to view all records from the DEPARTMENT table.
 ```sql
-SELECT * FROM DEPARTMENT;
+sql> SELECT * FROM DEPARTMENT;
 ```
 
 **Output:**
@@ -1083,7 +1066,7 @@ SELECT * FROM DEPARTMENT;
 
 ### 6. Write a query to view all records from the EMPLOYEE table.
 ```sql
-SELECT * FROM EMPLOYEE;
+sql> SELECT * FROM EMPLOYEE;
 ```
 
 **Output:**
@@ -1100,9 +1083,7 @@ SELECT * FROM EMPLOYEE;
 
 ### 7. Write a query using INNER JOIN to display employee names, department IDs, and department names for employees who belong to an existing department.
 ```sql
-SELECT e.emp_name, e.dept_id, d.dept_name
-FROM EMPLOYEE e
-INNER JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
+sql> SELECT e.emp_name, e.dept_id, d.dept_name FROM EMPLOYEE e INNER JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
 ```
 
 **Output:**
@@ -1115,9 +1096,7 @@ INNER JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
 
 ### 8. Write a query using LEFT JOIN to display all employee names, their department IDs, and department names. Include employees even if they don’t belong to a valid department.
 ```sql
-SELECT e.emp_name, e.dept_id, d.dept_name
-FROM EMPLOYEE e
-LEFT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
+sql> SELECT e.emp_name, e.dept_id, d.dept_name FROM EMPLOYEE e LEFT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
 ```
 
 **Output:**
@@ -1132,9 +1111,7 @@ LEFT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
 
 ### 9. Write a query using RIGHT JOIN to display all departments along with employee names (if any) and employee department IDs.
 ```sql
-SELECT d.dept_name, e.emp_name, e.dept_id
-FROM EMPLOYEE e
-RIGHT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
+sql> SELECT d.dept_name, e.emp_name, e.dept_id FROM EMPLOYEE e RIGHT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
 ```
 
 **Output:**
@@ -1150,14 +1127,7 @@ RIGHT JOIN DEPARTMENT d ON e.dept_id = d.dept_id;
 *Note: Since some SQL databases (e.g., MySQL) don’t support FULL OUTER JOIN directly, we can simulate it using LEFT JOIN and RIGHT JOIN with UNION.*
 
 ```sql
-SELECT e.emp_name, e.dept_id, d.dept_name
-FROM EMPLOYEE e
-LEFT JOIN DEPARTMENT d ON e.dept_id = d.dept_id
-UNION
-SELECT e.emp_name, e.dept_id, d.dept_name
-FROM EMPLOYEE e
-RIGHT JOIN DEPARTMENT d ON e.dept_id = d.dept_id
-WHERE e.emp_id IS NULL;
+sql> SELECT e.emp_name, e.dept_id, d.dept_name FROM EMPLOYEE e LEFT JOIN DEPARTMENT d ON e.dept_id = d.dept_id UNION SELECT e.emp_name, e.dept_id, d.dept_name FROM EMPLOYEE e RIGHT JOIN DEPARTMENT d ON e.dept_id = d.dept_id WHERE e.emp_id IS NULL;
 ```
 
 **Output:**
@@ -1173,9 +1143,7 @@ WHERE e.emp_id IS NULL;
 
 ### 11. Write a query using CROSS JOIN to display all possible combinations of employees and departments. Include employee department ID and department ID from both tables.
 ```sql
-SELECT e.emp_name, e.dept_id AS emp_dept_id, d.dept_id AS dept_dept_id, d.dept_name
-FROM EMPLOYEE e
-CROSS JOIN DEPARTMENT d;
+sql> SELECT e.emp_name, e.dept_id AS emp_dept_id, d.dept_id AS dept_dept_id, d.dept_name FROM EMPLOYEE e CROSS JOIN DEPARTMENT d;
 ```
 
 **Output:**
