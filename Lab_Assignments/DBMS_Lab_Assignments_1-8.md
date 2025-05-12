@@ -847,15 +847,15 @@ sql> select * from Sales where Category = 'Electronics' order by ProductName asc
 
 ### Q6. List all sales sorted first by category (A–Z), then by price per unit (lowest to highest).
 ```sql
-sql> select * from Sales ORDER order by Category asc, PricePerUnit asc;
+sql> select * from Sales order by Category asc, PricePerUnit asc;
 ```
 
 **Output:**
 
 | SaleID | ProductName | Category    | Quantity | PricePerUnit | Region |
-|--------|-------------|-------------|----------|--------------|--------|
-| 2      | Smartphone  | Electronics | 4        | 300          | South  |
+| ------ | ----------- | ----------- | -------- | ------------ | ------ |
 | 5      | Monitor     | Electronics | 3        | 200          | North  |
+| 2      | Smartphone  | Electronics | 4        | 300          | South  |
 | 1      | Laptop      | Electronics | 2        | 600          | North  |
 | 3      | Desk Chair  | Furniture   | 1        | 150          | West   |
 | 7      | Sofa        | Furniture   | 1        | 800          | West   |
